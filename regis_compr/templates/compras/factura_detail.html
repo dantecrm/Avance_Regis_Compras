@@ -1,0 +1,40 @@
+{% extends 'index.html' %}
+{% load url from future %}
+{% block section %}
+<table class="pure-table">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Entrada en el diario</th>
+            <th>Cuenta Asociada</th>
+            <th>Descuento máximo por pronto pago</th>
+            <th>Fecha de Facturación</th>
+            <th>Fecha de Vencimiento</th>
+            <th>Número de Factura</th>
+            <th>Número de Folio</th>
+            <th>Registro Federal de Contribuyentes</th>
+            <th>Nombre de Comprador</th>
+            <th>Dirección</th>
+            <th>Productos a Facturar</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr>
+            <td>{{proveedores.pk}}</td>
+            <td>{{proveedores}}</td>
+            <td>{{proveedores.ct_asoc}}</td>
+            <td>{{proveedores.descuento}}</td>
+            <td>{{proveedores.fecha_fact}}</td>
+            <td>{{proveedores.fecha_venc}}</td>
+            <td>{{proveedores.num_fact}}</td>
+            <td>{{proveedores.num_folio}}</td>
+            <td>{{proveedores.rfc}}</td>
+            <td>{{proveedores.nombre}}</td>
+            <td>{{proveedores.direccion}}</td>
+            <td>{{proveedores.productos}}</td>
+        </tr>
+    </tbody>
+</table>
+</form>
+{% endblock %}

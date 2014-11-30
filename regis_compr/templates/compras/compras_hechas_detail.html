@@ -1,0 +1,59 @@
+{% extends 'index.html' %}
+{% load url from future %}
+{% block section %}
+<form action="" method="post" style="margin-left:8cm">{% csrf_token %}
+<table class="pure-table">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Comprador</th>
+            <th>Productos Comprados</th>
+            <th>Total</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr>
+            <td>{{comprashechas.pk}}</td>
+            <td>{{comprashechas.comprado}}</td>
+            <td><a href="">Ver detallados los productos</a></td>
+            <td>{{comprashechas.total}}</td>
+        </tr>
+    </tbody>
+</table>
+</form>
+
+
+<html> 
+<head> 
+<title>Formulario</title> 
+</head> 
+<body> 
+<script languaje="JavaScript"> 
+function operacion() { 
+if (document.form1.rad[0].checked) 
+document.form1.resultado.value= document.form1.valor.value/1.18; 
+if (document.form1.rad[1].checked) 
+document.form1.resultado.value= document.form1.valor.value/1.18*0.18; 
+if (document.form1.rad[2].checked) 
+document.form1.resultado.value= document.form1.valor.value *document.form1.valor.value * document.form1.valor.value; 
+} 
+</script> 
+
+<form name="form1" > 
+<div align="center">Valor : 
+<input type="text" name="valor" size="8" /> 
+</div> 
+<div>Ejecutar : </div> 
+<div> 
+<input type="radio" name="rad" value="triple" onClick="operacion()"><b> Precio Real </b><br> 
+<input type="radio" name="rad" value="cuadrado" onClick="operacion()"><b> IGV </b> 
+<input type="radio" name="rad" value="cubo" onClick="operacion()"><b> al cubo </b> 
+</div> 
+<div> El resultado es : 
+<input type="text" name="resultado" value=""> 
+</div> 
+</form> 
+</body> 
+</html>
+{% endblock %}

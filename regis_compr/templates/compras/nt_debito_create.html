@@ -1,0 +1,30 @@
+{% extends 'index.html' %}
+
+{% block section %}    
+<div id="loginModal" class="modal show" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="panel panel-primary">
+                <div class="panel-heading" style="text-align:center;
+                    font-size:25px">Nueva Nota de Débito</div>
+                <form  method="post" class="pure-form pure-form-stacked">{% csrf_token %}
+                    <fieldset  style="text-align:left; margin-left:90px;padding-left:35px;">
+                        <div class="pure-input-1-2">
+                            {{form}}
+                        </div>
+                    </fieldset>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary btn-lg btn-block">Guardar</button>
+                    </div>
+                </form>
+                <div class="modal-footer">
+                    <div class="col-md-12"><a href="{% url 'factura_list' %}">
+                            <button class="btn btn-warning" data-dismiss="modal" aria-hidden="true">Cancel</button></a>
+                    </div>	
+                </div>
+            </div> 
+        </div>
+    </div>
+</div>
+
+{% endblock %}

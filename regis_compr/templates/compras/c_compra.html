@@ -1,0 +1,27 @@
+<table>
+    <thead>
+    <tr>
+        <td>Producto</td>
+        <td>Cantidad</td>
+        <td></td>
+    </tr>
+    </thead>
+    <tbody>
+    {% for key,value in productos.items %}
+    <tr><td>{{ key }}</td><td style="text-align: center">{{ value.0 }}</td>
+    <td><a href="/del/producto/{{ value.1.id }}/"><i class="icon-remove"></i></a></td></tr>
+    {% endfor %}
+    </tbody>
+</table>
+<a href="/finish-buy/" class="btn btn-primary">Comprar</a>
+<a id="clean" href="#" class="btn btn-primary">Limpiar carrito</a>
+<script>
+    $(document).ready(function(){
+       $("#clean").click(function(ev){
+           ev.preventDefault();
+           $.get("/clean-cart/",function(data){
+               $("#cuerpo_carrito").html(data);
+           })
+       });
+    });
+</script>

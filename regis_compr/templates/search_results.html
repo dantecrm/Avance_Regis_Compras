@@ -1,0 +1,48 @@
+{% extends 'menu.html' %}
+{% load url from future %}
+{% block content %}
+<table class="pure-table"  style="margin-left:7cm">
+    <p style="margin-left:11.5cm">Tu buscaste por: <strong>{{ query }}</strong></p>
+    {% if proveedores %}
+    <p style="margin-left:7cm">Encontrado(s) {{ proveedores|length }} proveedor{{ proveedores|pluralize }}.</p>
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Proveedor</th>
+            <th>Tipo de Documento</th>
+            <th>Número de Documento</th> 
+            <th>Fecha de Registro</th>
+        </tr>
+    </thead>
+
+    {% for proveedor in proveedores %}
+    <tbody>
+        <tr>
+            <td>{{proveedor.pk}}</td>
+            <td>{{proveedor.proveedor}}</td>
+            <td>{{proveedor.tip_doc}}</td>
+            <td>{{proveedor.num_doc}}</td>
+            <th>{{proveedor.date_registro}}</th>
+        </tr>
+    </tbody>
+    {% endfor %}
+    {% else %}
+    <div class="alert alert-danger" role="alert">No se encontró el proveedor</div>
+    {% endif %}
+</table>
+{% endblock %}
+<!-- <p>You searched for: <strong>{{ query }}</strong></p> -->
+
+<!-- {% if proveedores %} -->
+<!--     <p>Found {{ proveedores|length }} proveedor{{ proveedores|pluralize }}.</p> -->
+<!--     <ul> -->
+<!--         {% for proveedor in proveedores %} -->
+<!--         <li>{{ proveedor.proveedor }}</li> -->
+<!--         <li>{{ proveedor.tip_doc }}</li> -->  
+<!--         <li>{{ proveedor.num_doc }}</li> -->  
+<!--         <li>{{ proveedor.date_registro }}</li> -->  
+<!--         {% endfor %} -->
+<!--     </ul> -->
+<!-- {% else %} -->
+<!--     <p>No se encontró el proveedor</p> -->
+<!-- {% endif %} -->

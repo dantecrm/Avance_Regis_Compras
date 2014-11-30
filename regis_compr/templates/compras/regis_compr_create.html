@@ -1,0 +1,119 @@
+{% extends 'index.html' %}
+
+{% block section %}    
+<!-- <div id="loginModal" class="modal show" tabindex="-1" role="dialog" aria-hidden="true"> -->
+<!--     <div class="modal-dialog"> -->
+<!--         <div class="modal-content"> -->
+<!--             <div class="panel panel-primary"> -->
+<!--                 <div class="panel-heading" style="text-align:center;font-size:25px">Nuevo Registro de Compras</div> -->
+<!--                 <form  method="post" class="pure-form pure-form-stacked">{% csrf_token %} -->
+<!--                     <fieldset  style="text-align:left; margin-left:90px;padding-left:35px;"> -->
+<!--                         <div class="pure-input-1-2"> -->
+<!--                             {{form}} -->
+<!--                         </div> -->
+<!--                     </fieldset> -->
+<!--                     <div class="form-group"> -->
+<!--                         <button type="submit" class="btn btn-primary btn-lg btn-block">Guardar</button> -->
+<!--                     </div> -->
+<!--                 </form> -->
+<!--                 <div class="modal-footer"> -->
+<!--                     <div class="col-md-12"><a href="/"> -->
+<!--                             <button class="btn btn-warning" data-dismiss="modal" aria-hidden="true">Cancel</button></a> -->
+<!--                     </div> -->	
+<!--                 </div> -->
+<!--             </div> --> 
+        <!-- </div> -->
+    <!-- </div> -->
+<!-- </div> -->
+ <!-- <div class="panel panel-default" style="width: 1150px; height: 600px; overflow: scroll;"> -->
+ <!--    <div class="panel-heading">Registro de Compras</div> -->
+ <div style="width: 1150px; height: 400px; overflow: scroll">
+     <a href="{% url 'compras_hechas_create' %}"class="btn btn-default btn-lg">Agregar compras</a>
+ <table class="pure-table" style="font-size:12px; border-collapse:collapse">
+    <caption style="font-size:20px">Reporte del Registro de Compras</caption>
+    <thead>
+        <tr>
+            <th scope="col" rowspan="3" style="border: 1px solid #000">NÚMERO CORRELATIVO DEL REGISTRO O CÓDIGO UNICO DE LA OPERACIÓN</th>
+            <th scope="col" rowspan="3"style="border: 1px solid #000">FECHA DE EMISIÓN DEL COMPROBANTE DE PAGO O DOCUMENTO</th>
+            <th scope="col" rowspan="3"style="border: 1px solid #000">FECHA DE VENCIMIENTO O FECHA DE PAGO</th>
+            <th scope="col" colspan="3"style="border: 1px solid #000">COMPROBANTE DE PAGO O DOCUMENTO</th>
+            <th scope="col" rowspan="3"style="border: 1px solid #000">N° DEL COMPROBANTE DE PAGO, DOCUMENTO, N° DE ORDEN DEL FORMULARIO FÍSICO O VIRTUAL, N° DE DUA, DSI O LIQUIDACIÓN DE COBRANZA U OTROS DOCUMENTOS EMITIDOS POR SUNAT PARA ACREDITAR EL CRÉDITO FISCAL EN LA IMPORTACIÓN</th>
+            <th scope="col" colspan="3"style="border: 1px solid #000">INFORMACIÓN DEL PROVEEDOR</th>
+            <th scope="col" colspan="2"style="border: 1px solid #000">ADQUISICIONES GRAVADAS DESTINADAS A OPERACIONES GRAVADAS Y/O DE EXPORTACIÓN</th>
+            <th scope="col" colspan="2"style="border: 1px solid #000">ADQUISICIONES GRAVADAS DESTINADAS A OPERACIONES GRAVADAS Y/O DE EXPORTACIÓN Y A OPERACIONES NO GRAVADAS</th>
+            <th scope="col" colspan="2"style="border: 1px solid #000">ADQUISICIONES GRAVADAS DESTINADAS A OPERACIONES  NO GRAVADAS</th>
+            <th scope="col" rowspan="3"style="border: 1px solid #000">VALOR DE LAS ADQUISICIONES NO GRAVADAS</th>
+            <th scope="col" rowspan="3"style="border: 1px solid #000">ISC</th>
+            <th scope="col" rowspan="3"style="border: 1px solid #000">OTROS TRIBUTOS Y CARGOS</th>
+            <th scope="col" rowspan="3"style="border: 1px solid #000">IMPORTE  TOTAL</th>
+            <th scope="col" rowspan="3"style="border: 1px solid #000">N° DE COMPROBANTE DE PAGO EMITIDO POR SUJETO NO DOMICILIADO</th>
+            <th scope="col" colspan="2"style="border: 1px solid #000">CONSTANCIA DE DEPÓSITO DE DETRACCIÓN</th>
+            <th scope="col" rowspan="3"style="border: 1px solid #000">TIPO DE  CAMBIO</th>
+            <th scope="col" colspan="4"style="border: 1px solid #000">REFERENCIA DEL COMPROBANTE DE PAGO O DOCUMENTO ORIGINAL QUE SE MODIFICA</th>
+        </tr>
+        <tr>
+            <th scope="col" rowspan="2"style="border: 1px solid #000">TIPO</th> 
+            <th scope="col" rowspan="2"style="border: 1px solid #000">SERIE O CÓDIGO DE LA DEPENDENCIA ADUANERA</th>
+            <th scope="col" rowspan="2"style="border: 1px solid #000">AÑO DE EMISIÓN DE LA DUA O DSI</th>
+            <th scope="col" colspan="2"style="border: 1px solid #000">DOCUMENTO DE IDENTIDAD</th>
+            <th scope="col" rowspan="2"style="border: 1px solid #000">APELLIDOS Y NOMBRES, DENOMINACIÓN O RAZÓN SOCIAL</th> 
+            <th scope="col" rowspan="2"style="border: 1px solid #000">BASE IMPONIBLE </th>
+            <th scope="col" rowspan="2"style="border: 1px solid #000">IGV</th>
+            <th scope="col" rowspan="2"style="border: 1px solid #000">BASE IMPONIBLE </th>
+            <th scope="col" rowspan="2"style="border: 1px solid #000">IGV</th>
+            <th scope="col" rowspan="2"style="border: 1px solid #000">BASE IMPONIBLE </th>
+            <th scope="col" rowspan="2"style="border: 1px solid #000">IGV</th>
+            <th scope="col" rowspan="2"style="border: 1px solid #000">NÚMERO</th>
+            <th scope="col" rowspan="2"style="border: 1px solid #000">FECHA DE EMISIÓN</th>
+            <th scope="col" rowspan="2"style="border: 1px solid #000">FECHA</th>
+            <th scope="col" rowspan="2"style="border: 1px solid #000">TIPO</th>
+            <th scope="col" rowspan="2"style="border: 1px solid #000">SERIE</th>
+            <th scope="col" rowspan="2"style="border: 1px solid #000">N° DEL COMPROBANTE DE PAGO O DOCUMENTO</th>
+        </tr>
+        <tr>
+            <th scope="col" style="border: 1px solid #000">TIPO</th>
+            <th scope="col" style="border: 1px solid #000">NÚMERO</th> 
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td></td> 
+            <td></td> 
+            <td></td> 
+            <td></td> 
+            <td></td> 
+            <td></td> 
+            <td></td> 
+            <td></td> 
+            <td></td> 
+            <td></td> 
+            <td></td> 
+            <td></td> 
+            <td></td> 
+            <td></td> 
+            <td></td> 
+            <td></td> 
+            <td></td> 
+            <td></td> 
+            <td></td> 
+            <td></td> 
+            <td></td> 
+            <td></td> 
+            <td></td> 
+            <td></td> 
+            <td></td> 
+            <td></td> 
+            <td></td> 
+            <td></td> 
+        </tr>
+    </tbody>
+</table>
+</div>
+<tfoot style="padding:95px 0 0; ">
+    <p style=" color:white;background-color: #1E90FF;text-align:center; display: block;
+-webkit-margin-before: 3em;
+-webkit-margin-after: 3em;
+-webkit-margin-start: 0px;
+-webkit-margin-end: 0px;"> Copyright © 2014 Dante Cunurana Mamani</p>
+</tfoot>
+{% endblock %}

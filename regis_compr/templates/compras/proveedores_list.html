@@ -1,0 +1,25 @@
+{% extends 'index.html' %}
+
+{% block section %}
+<div class="panel panel-primary">
+  <div class="panel-heading">Lista de Proveedores</div>
+  <table class="table">
+      <thead><tr><th>Título</th><th>Acción</th></tr></thead>
+      <tbody>
+          {% for proveedor in proveedores_list %}
+          <tr>
+              <td>
+                  <a href="{{compras.get_absolute_url}}">{{proveedor}}</a>
+              </td> 
+              <td style="color: #000">
+                  <button type="button" class="btn btn-primary"><a href="{% url 'proveedor_update' proveedor.pk  %}"style="color: #fff">Update</a></button> 
+                  <button type="button" class="btn btn-default"><a href="{% url 'proveedor_delete' proveedor.pk %}">Delete</a></button>
+              </td>
+          </tr>
+      {% endfor %}
+</tbody>
+  </table>
+</div>
+<table>
+</table>
+{% endblock %}

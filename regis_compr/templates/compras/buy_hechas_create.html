@@ -1,0 +1,75 @@
+{% extends 'index.html' %}
+
+{% block section %}    
+<!-- <div id="loginModal" class="modal show" tabindex="-1" role="dialog" aria-hidden="true"> -->
+<!--     <div class="modal-dialog"> -->
+<!--         <div class="modal-content"> -->
+            <div class="panel panel-primary">
+                <div class="panel-heading" style="text-align:center; font-size:25px">Hacer un Compra</div>
+                <form  method="post" class="pure-form pure-form-stacked">{% csrf_token %}
+                    <fieldset  style="text-align:left; margin-left:90px;padding-left:35px;">
+                        <div class="pure-input-1-2">
+                            {{form}}
+                        </div>
+                    </fieldset>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary btn-lg btn-block">Guardar</button>
+                    </div>
+                </form>
+                <div class="modal-footer">
+                    <div class="col-md-12"><a href="/">
+                            <button class="btn btn-warning" data-dismiss="modal" aria-hidden="true">Cancel</button></a>
+                    </div>	
+                </div>
+            </div> 
+            <script>
+                var {{comprashechas.productos.precio_unitario}}, {{comprashechas.productos.cantidad}}, precio_real, iva, precio_total;
+                precio_total = {{comprashechas.productos.precio_unitario}}*{{comprashechas.productos.cantidad}};
+                precio_real = precio_total/1.18;
+                iva = precio_real*0.18
+            </script>
+        <!-- </div> -->
+    <!-- </div> -->
+<!-- </div> -->
+<html>
+<head>      
+<script language="JavaScript">  
+    function calcular()
+    {
+        var precio=  parseFloat( document.getElementById("precio_no_tax").value);   
+        var base_imponible = document.getElementById("base_imponible").value = precio/1.18;              
+    var iva = document.getElementById("iva").value = base_imponible*0.18;              
+    var total = document.getElementById("total").value = base_imponible+iva;              
+    }   
+    
+</script>   
+</head>
+ 
+ 
+<body onload="calcular();">
+ 
+<form method="POST" action="tu_script.php" name="form">
+<tbody>
+<tr>
+<td>Id producto:</td>
+<td><input type="text" name="id_product" value="22" readonly size="3"></td>
+</tr>
+<tr>
+<td>Precio total:</td>
+<td><input type="text" id="precio_no_tax" value="" size="5" onkeyup="calcular();"></td>
+</tr>
+ 
+<tr>
+<td>Base Imponible:</td>
+<td><input type="text"  id="base_imponible"  value=""size:"10" onkeyup="calcular()"></td>
+</tr>
+<tr>
+<td>IVA:</td>
+<td><input type="text"  value="" id="iva"disabled="disabled"></td>
+</tr>
+<div >
+    <p>Ejemplo de los datos de una factura</p>
+</div>
+</body>
+</html>
+{% endblock %}

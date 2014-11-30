@@ -1,0 +1,25 @@
+{% extends 'index.html' %}
+{% load url from future %}
+{% block section %}
+<table class="pure-table" style="margin-left:5cm">{% csrf_token %}
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Proveedor</th>
+            <th>Tipo de Documento</th>
+            <th>Número de Documento</th>
+            <th>Fecha de Registro</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr>
+            <td>{{proveedores.pk}}</td>
+            <td>{{proveedores}}</td>
+            <td>{{proveedores.tip_doc}}</td>
+            <td>{{proveedores.num_doc}}</td>
+            <th>{{proveedores.date_registro}}</th>
+        </tr>
+    </tbody>
+</table>
+{% endblock %}

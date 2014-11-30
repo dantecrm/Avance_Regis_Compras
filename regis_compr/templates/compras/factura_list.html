@@ -1,0 +1,25 @@
+{% extends 'index.html' %}
+
+{% block section %}
+<div class="panel panel-default">
+  <div class="panel-heading">Lista de de Facturas hechas</div>
+  <table class="table">
+      <thead><tr><th>Título</th><th>Acción</th></tr></thead>
+      <tbody>
+          {% for factura in factura_list %}
+          <tr>
+              <td>
+                  <a href="{{compras.get_absolute_url}}">{{factura}}</a>
+              </td> 
+              <td style="color: #000">
+                  <button type="button" class="btn btn-primary"><a href="{% url 'nota_credito_create' %}"style="color: #fff">Nota de Crédito</a></button> 
+                  <button type="button" class="btn btn-default"><a href="{% url 'nota_debito_create' %}">Nota de Débito</a></button>
+              </td>
+          </tr>
+      {% endfor %}
+</tbody>
+  </table>
+</div>
+<table>
+</table>
+{% endblock %}

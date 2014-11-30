@@ -1,0 +1,31 @@
+{% extends 'index.html' %}
+{% load url from future %}
+{% block section %}
+<table class="pure-table" style="margin-left:8cm">{% csrf_token %}
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Nombre de Producto</th>
+            <th>Descripción</th>
+            <th>Cantidad</th>
+            <th>Status</th>
+            <th>Precio unitario de Producto</th>
+            <th>Proveedor</th>
+            <th>Fecha de Registro</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr>
+            <td>{{productprovee.pk}}</td>
+            <td>{{productprovee.nombre}}</td>
+            <td>{{productprovee.descripcion}}</td>
+            <td>{{productprovee.cantidad}}</td>
+            <td>{{productprovee.status}}</td>
+            <td>{{productprovee.precio_unitario}}</td>
+            <th>{{productprovee.proveedor_produc}}</th>
+            <td>{{productprovee.date_registro}}</td>
+        </tr>
+    </tbody>
+</table>
+{% endblock %}

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+{% load i18n %}
+<html lang="es">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Proyecto Demo</title>
+    <meta name="description" content="Clean, standards-friendly, modular framework for dropdown menus" />
+    {% block css %}
+    <link href="{% static 'css/helper.css' %}" media="all" rel="stylesheet" type="text/css" />
+    <link href="{% static 'css/horizontal-centering.css' %}" media="all" rel="stylesheet" type="text/css" />
+    <link href="{% static 'css/dropdown.css' %}" media="screen" rel="stylesheet" type="text/css" />
+    <link href="{% static 'css/default.advanced.css' %}" media="screen" rel="stylesheet" type="text/css" />
+    {% endblock %}
+  <!--<link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css">
+    <link href="{% static 'bootstrap/css/bootstrap.css' %}" rel="stylesheet">
+    <link href="{% static 'bootstrap/css/bootstrap-responsive.css' %}" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" />
+    <script src="{% static 'js/modernizr-1.5.min.js' %}"></script>
+    <script src="{% static 'js/jquery.js' %}"></script>
+    <script src="{% static 'bootstrap/js/bootstrap.js' %}"></script>-->
+    <style type="text/css">
+      body {
+        padding-top: 60px;
+        padding-bottom: 40px;
+      }
+      .sidebar-nav {
+        padding: 9px 0;
+      }
+    </style>
+    <script type="text/javascript">
+        $(document).on('ready',function(){
+              $.ajax({
+                  type:"GET",
+                  contentType:"application/json; charset=utf-8",
+                  dateType:"json",
+                  url:"/ws/productos/",
+                  success:function(response){
+                          var i = (response.length-1)-2;
+                          for(i;i<=(response.length-1);i++){
+                              $('#ProductosNuevos').append("<li>"+response[i].fields.nombre+"</li>");
+                          }    
+                  }
+              });
+            $.get("/getcart/",function(data){
+               $("#cuerpo_carrito").html(data)
+            });
+        });
+    </script> 
+    {% block scripts %}
+    {% endblock %}
+    {% block styles %}{% endblock %}
+  </head>
+
+<body  class="vimeo-com">
+<header>
+<div class="wrapper">
+  <div class="container">
+    {% if user.is_authenticated %}
+    <p class="main-site">
+    Logged in as {{ user.username }}
+    </p>
+    {% endif %}
+    <h1><img src="../static/images/vimeo.com/logo_lwis.png" alt="LWIS.net" /> Registro de Compras</h1>
+    <div class="horizontal-centering"><div><div>
+     <ul id="nav" class="dropdown dropdown-horizontal">
+        <li class="first"><a href="/">Home</a></li>
+        <li class="dir">Products
+          <ul>
+            <li class="last"><a href="/productos/page/1/">New</a></li>
+          </ul>
+        </li>
+        <li class="dir">Realizar Operaciones
+            <ul>
+            <li class="first"><a href="/productos/page/1/">Productos</a></li>
+            <li class="dir">Proveedores
+                <ul>
+                  <li class="first"><a href="{% url 'proveedor_create' %}">New</a></li>
+                  <li><a href="{% url 'proveedor_list' %}">Listar Proveedores</a></li>
+                  <li class="last"><a href="{% url 'product_provee_create' %}">Agregar Producto de Proveedor</a></li>
+                </ul>
+            </li>
+            <li><a href="{% url 'comprador_create' %}">Crear Comprador</a></li>
+            <li><a href="{% url 'comprashechas_create' %}">Hacer Compras</a></li>
+            <li class="last"><a href="{% url 'visualizar_compra' %}">Reporte de Registro de Compras</a></li>
+            </ul>
+        </li>
+        <li><a href="{% url 'vista_about' %}">About Us</a></li>
+        {% if user.is_authenticated %}
+        <li><a href="{% url 'vista_logout' %}"> Cerrar Sesion </a></li>
+        {% else %}
+        <li><a href="{% url 'vista_login' %}"> Login </a></li>
+        {% endif %}
+        <li class="dir last">
+          <form method="get" action="/search/">
+            <fieldset>
+              <input type="text" name="buscar" min="1" max="11" id="search" class="text" value="Search!" onfocus="if (this.value == 'Search!') this.value = '';" onblur="if (this.value == '') this.value = 'Search!';" />
+              <input type="image" src="../static/images/vimeo.com/btn_search.png" class="button" />
+            </fieldset>
+          </form>
+        </li>
+      </ul>
+
+    </div></div></div>
+  </div>
+</div>
+</header>
+<section>
+{% block section %}
+    <div class="container-fluid">
+      <div class="row-fluid">
+        <div class="span9">
+          <div class="hero-unit" style="">
+            {% block content %}
+            {% endblock%}
+          </div>
+        </div><!--/span-->
+        <div class="span3">
+          <div class="well sidebar-nav">
+            <ul class="nav nav-list">
+              {%  if user.is_authenticated %}
+            <form action="/search/" class="pure-form" style="text-align:left; position:relative; top: 10px" method="get">
+                <input type="text" name="buscar" min="1" max="11" class="pure-input-rounded">
+                <button type="submit" class="pure-button" value="Search">Search</button>
+            </form>
+              <li class="nav-header">Mi Carrito</li>
+              <br><p align="justify">
+              	Carrito de {{ user.username }}
+              </p>
+              <div id="cuerpo_carrito"></div>
+               {% else %}
+               <p>Por favor <a href="{% url 'vista_login' %}">identifiquese</a></p>
+               {% endif %}
+            </ul>
+          </div><!--/.well -->
+          <div class="well sidebar-nav">
+            <ul class="nav nav-list" id="ProductosNuevos">
+              <li class="nav-header">Nuevos Productos</li>
+              
+            </ul>
+          </div><!--/.well -->
+           <img src="/static/images/django.gif"/>
+        </div><!--/span-->
+      </div><!--/row-->
+      <hr>
+      <footer>
+        <p>&copy; Open Project 2013 </p> 
+      </footer>
+    </div>
+    {% endblock %}
+</section>
+  </body>
+</html>

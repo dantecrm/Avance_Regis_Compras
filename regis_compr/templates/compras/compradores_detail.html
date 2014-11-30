@@ -1,0 +1,24 @@
+{% extends 'index.html' %}
+{% load url from future %}
+{% block section %}
+<form action="" method="post" style="margin-left:8.5cm">{% csrf_token %}
+<table class="pure-table">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Comprador</th>
+            <th>Empresa</th>
+            <th>Domicilio Comercial</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>{{compradores.pk}}</td>
+            <td>{{compradores.comprador}}</td>
+            <td>{{compradores.empresa}}</td>
+            <td>{{compradores.direccion}}</td>
+        </tr>
+    </tbody>
+</table>
+</form>
+{% endblock %}

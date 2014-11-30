@@ -1,0 +1,12 @@
+{% extends 'index.html' %}
+{% load url from future %}
+
+{% block title %}{{object_name}} Confirm delete?{% endblock %}
+
+{% block section %}
+<h3>Seguro que quieres eliminar al proveedor {{object}}?</h3>
+<form action="" method="post">{% csrf_token %}
+    <input class="btn btn-danger" type="submit" value="Yes!"/>  
+    <input class="btn btn-primary" type="button" value="No..." onclick="window.history.go(-1);"/>
+</form>
+{% endblock %}
