@@ -21,11 +21,6 @@ from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.decorators import login_required
 from django.core.mail import EmailMultiAlternatives # Enviamos HTML
 
-def save(self):
-  instance = forms.ModelForm.save(self)
-  instance.productprovee_set.clear()
-  for topping in self.cleaned_data['productos']:
-    instance.productprovee_set.add(productprovee)
 
 def search_ruc(request):
     return render(request, 'index.html')
@@ -44,7 +39,7 @@ def edit_product_view(request, id_prod):
     info = "iniciado"
     prod = ProductProvee.objects.get(pk=id_prod)
     if request.method == "POST":
-        form = ProductProveeForm(request.POST, instance=prod)
+        form = ProductProveeForm(request.POST,request.FILES,instance=prod)
         if form.is_valid():
             edit_prod = form.save(commit=False)
             form.save_m2m()
@@ -52,15 +47,15 @@ def edit_product_view(request, id_prod):
             edit_prod.save()
             info = "Correcto"
             return HttpResponseRedirect('/producto/%s/'%edit_prod.id)
-        else:
-            form = ProductProveeForm(instance=prod)
-        ctx = {'form':form, 'informacion':info}
-        return render_to_response('compras/editProducto.html', ctx, context_instance=RequestContext(request))
+    else:
+        form = ProductProveeForm(instance=prod)
+    ctx = {'form':form, 'informacion':info}
+    return render_to_response('compras/editProducto.html', ctx, context_instance=RequestContext(request))
 
 def add_product_view(request):
 	info = "iniciado"
 	if request.method == "POST":
-		form = ProductProveeForm(request.POST)
+		form = ProductProveeForm(request.POST, request.FILES)
 		if form.is_valid():
 			add = form.save(commit=False)
 			add.status = True
@@ -142,7 +137,6 @@ def real_compra(request):
     fecha = date.today()
     return render_to_response("compras/regis_compr_add.html",{"vtotal":vtotal,"productos":c_compra,"igv":igv,"bas_imp":bas_imp, "fecha":fecha,"nf":f},context_instance=RequestContext(request))
 
-
 def to_pdf(request):
     c_compra = request.session["carrito_de_compra"] #obtengo el carrito de compras de la session
     vtotal = 0 # valor donde acumulare el monto total a pagar por el usuario
@@ -150,12 +144,12 @@ def to_pdf(request):
     for key,value in c_compra.items(): # el carrito es un diccionario, lo recorro key= nombre del producto
                                        # el value es una lista donde la pos 0 es la cantidad y la pos 1 el producto
         p_pro = value[1].precio # obtengo el valor del producto
-        iva = value[1].iva # obtengo el iva aplicado al producto
+        iva = value[1].igv # obtengo el iva aplicado al producto
         p_total = (float(p_pro)*(1+iva))*float(value[0]) # obtengo el valor total del producto x iva x cantidad
         value.append(p_total) # agrego al final de la lista (value) del diccionario el valor total
         vtotal += p_total # sumatoria de los valores totales
     fecha = date.today() # obtengo la fecha de hoy
-    return PDFTemplateResponse(request,"ventas/facturapdf.html",{"vtotal":vtotal,"productos":c_compra,"fecha":fecha,"nf":f})
+    return PDFTemplateResponse(request,"compras/facturapdf.html",{"vtotal":vtotal,"productos":c_compra,"fecha":fecha,"nf":f})
 
 class ProveedoresList(ListView):
     template_name = 'compras/proveedores_list.html'

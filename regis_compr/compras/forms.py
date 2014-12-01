@@ -5,10 +5,12 @@ from django.forms import ModelMultipleChoiceField
 class ProveedoresForm(forms.ModelForm):
     class Meta:
         model = Proveedores
+        exclude = ['']
 
 class CompradoresForm(forms.ModelForm):
     class Meta:
         model = Compradores
+        exclude = ['']
 
 class ProductProveeForm(forms.ModelForm):
     class Meta:
@@ -18,6 +20,7 @@ class ProductProveeForm(forms.ModelForm):
 class ComprasHechasForm(forms.ModelForm):
     class Meta:
         model = ComprasHechas
+        exclude = ['']
     # productos = forms.ModelMultipleChoiceField(queryset=ProductProvee.objects.all())
 
     # def __init__(self, *args, **kwargs):

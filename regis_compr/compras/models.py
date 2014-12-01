@@ -32,12 +32,15 @@ class categoriaProducto(models.Model):
         return self.nombre
 
 class ProductProvee(models.Model):
-    nombre = models.CharField(max_length=40, verbose_name="Nombre de Producto")
+    def url(self,filename):
+        ruta = "MultimediaData/Producto/%s/%s"%(self.nombre,str(filename))
+        return ruta
+    nombre = models.CharField(max_length=100, verbose_name="Nombre de Producto")
     proveedor_produc = models.ForeignKey(Proveedores)
     descripcion = models.TextField()
     stock = models.IntegerField()
     status = models.BooleanField(default=True)
-    imagen 		= models.ImageField(upload_to='productos',null=True,blank=True)
+    imagen 		= models.ImageField(upload_to=url,null=True,blank=True)
     categorias	= models.ManyToManyField(categoriaProducto,null=True,blank=True)
     precio = models.DecimalField(max_digits=8, decimal_places=2)
     igv         = models.FloatField()
@@ -84,7 +87,7 @@ class ComprasHechas(models.Model):
 
     @models.permalink
     def get_absolute_url(self):
-        return ('compras_hechas_detail', [int(self.pk)])
+        return ('comprashechas_detail', [int(self.pk)])
 
 # class Factura(models.Model):
 #     codigo_proveedor = models.CharField(max_length=3, verbose_name="Entrada en el diario")

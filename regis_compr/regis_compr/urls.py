@@ -5,29 +5,29 @@ from django.conf import settings
 from django.views.generic import TemplateView
 from compras.views import ProveedoresList, ProveedoresDetail, ProveedoresCreate, ProveedoresUpdate, ProveedoresDelete,  ProductProveeCreate, ProductProveeList, ProductProveeDetail, CompradoresCreate, CompradoresDetail, ComprasHechasCreate, ComprasHechasDetail
 from compras import views
+# from webServices.wsProductos import views
 from django.contrib import admin
-admin.autodiscover()
 
 urlpatterns = patterns('',
-    url(r'^$', TemplateView.as_view(template_name='index.html')),
+    # url(r'^$', TemplateView.as_view(template_name='base.html')),
     # Examples:
     # url(r'^$', 'project_name.views.home', name='home'),
     # url(r'^blog/', include('blog.urls')),
     url(r'^grappelli/', include('grappelli.urls')),
     url(r'^admin/', include(admin.site.urls)),
 
-    url(r'^media/(?P<path>.*)$','django.views.static.serve',{'document_root':settings.MEDIA_ROOT}),
     # url(r'^', include('account.urls')),
     # url(r'^compras/', include('compras.urls')),
     # Buscar Proveedor por RUC
 
     # Sessión
-	url(r'^inicio/$', views.index_view,name='vista_principal'),
+	url(r'^$', views.index_view,name='vista_principal'),
 	url(r'^about/$', views.about_view, name='vista_about'),
 	url(r'^login/$', views.login_view,name='vista_login'),
 	url(r'^registro/$',views.register_view,name='vista_registro'),
 	url(r'^logout/$', views.logout_view,name='vista_logout'),
 
+	url(r'^ws/productos/$', 'webServices.wsProductos.views.wsProductos_view' ,name= "ws_productos_url"),
     # App Compras Operaciones
 	url(r'^add/producto/$', views.add_product_view , name= "vista_agregar_producto"),
 	url(r'^edit/producto/(?P<id_prod>.*)/$', views.edit_product_view ,name= "vista_editar_producto"),
@@ -53,6 +53,7 @@ urlpatterns = patterns('',
     url(r'^comprador(?P<pk>\d+)$', CompradoresDetail.as_view(), name='comprador_detail'),
     url(r'^comprashechas/create/$', ComprasHechasCreate.as_view(), name='comprashechas_create'),
     url(r'^comprashechas(?P<pk>\d+)$', ComprasHechasDetail.as_view(), name='comprashechas_detail'),
+    url(r'^media/(?P<path>.*)$','django.views.static.serve',{'document_root':settings.MEDIA_ROOT}),
 )
 
 if settings.DEBUG:

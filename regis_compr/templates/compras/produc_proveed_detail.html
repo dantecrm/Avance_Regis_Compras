@@ -1,15 +1,17 @@
-{% extends 'index.html' %}
+{% extends 'base.html' %}
 {% load url from future %}
-{% block section %}
+{% block content %}
 <table class="pure-table" style="margin-left:8cm">{% csrf_token %}
     <thead>
         <tr>
             <th>#</th>
             <th>Nombre de Producto</th>
             <th>Descripción</th>
-            <th>Cantidad</th>
+            <th>Stock</th>
             <th>Status</th>
-            <th>Precio unitario de Producto</th>
+            <th>Imagen</th>
+            <th>IGV</th>
+            <th>Precio de Producto</th>
             <th>Proveedor</th>
             <th>Fecha de Registro</th>
         </tr>
@@ -20,12 +22,15 @@
             <td>{{productprovee.pk}}</td>
             <td>{{productprovee.nombre}}</td>
             <td>{{productprovee.descripcion}}</td>
-            <td>{{productprovee.cantidad}}</td>
+            <td>{{productprovee.stock}}</td>
             <td>{{productprovee.status}}</td>
-            <td>{{productprovee.precio_unitario}}</td>
+            <td>{{productprovee.imagen}}</td>
+            <td>{{productprovee.igv}}</td>
+            <td>{{productprovee.precio}}</td>
             <th>{{productprovee.proveedor_produc}}</th>
             <td>{{productprovee.date_registro}}</td>
         </tr>
     </tbody>
 </table>
+<a class="btn btn-warning" href="/productos/page/1/"data-dismiss="modal"  aria-hidden="true">Retornar al menu</a>
 {% endblock %}

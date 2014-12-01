@@ -2,3 +2,8 @@
 # requirements.txt en el directorio raíz del proyecto.
 
 -r requirements/production.txt
+
+# Para que funciones el 'serializers' con json he definido esto en el
+#settings.py, en mi caso lo he definido en configuracion.development
+
+SESSION_SERIALIZER = 'django.contrib.sessions.serializers.PickleSerializer'

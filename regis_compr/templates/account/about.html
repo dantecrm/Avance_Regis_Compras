@@ -1,7 +1,14 @@
 {% extends 'base.html' %}
 {% block title %} Acerca de .... {% endblock %}
 {% block content %}
-<h1>Esta es un acerca de mi pagina:</h1><br>
+<h1>Esta pagina trata acerca de:</h1><br>
+<div class="list-group">
+  <a href="#" class="list-group-item active" style="text-decoration:none">
+    <h4 class="list-group-item-heading">Un Registro de Compras</h4>
+    <p class="list-group-item-text">Siendo un estudiante de la <strong>Facultad de
+            Ingeniería y Arquitectura</strong> de la carrera de Ingeniría de Sistemas del 4to Ciclo, del CURSO de CONTABILIDAD I</p>
+  </a>
+</div>
 <h3>{{ msg }}</h3>
 <p>Version Django: {{version}}</p>
 

@@ -1,6 +1,6 @@
-{% extends 'index.html' %}
+{% extends 'base.html' %}
 {% load url from future %}
-{% block section %}
+{% block content %}
 <form action="" method="post" style="margin-left:8cm">{% csrf_token %}
 <table class="pure-table">
     <thead>
@@ -16,7 +16,7 @@
         <tr>
             <td>{{comprashechas.pk}}</td>
             <td>{{comprashechas.comprado}}</td>
-            <td><a href="">Ver detallados los productos</a></td>
+            <td><a href="/productos/page/1/">Ver detallados los productos</a></td>
             <td>{{comprashechas.total}}</td>
         </tr>
     </tbody>

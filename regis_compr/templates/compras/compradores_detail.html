@@ -1,7 +1,7 @@
-{% extends 'index.html' %}
+{% extends 'base.html' %}
 {% load url from future %}
-{% block section %}
-<form action="" method="post" style="margin-left:8.5cm">{% csrf_token %}
+{% block content %}
+<form action="" method="post" style="margin-left:3cm">{% csrf_token %}
 <table class="pure-table">
     <thead>
         <tr>
@@ -20,5 +20,8 @@
         </tr>
     </tbody>
 </table>
+<br>
+<a class="btn btn-warning" href="/productos/page/1/"data-dismiss="modal" style="text-decoration:none"  aria-hidden="true">Retornar al menu</a>
+</div>
 </form>
 {% endblock %}
