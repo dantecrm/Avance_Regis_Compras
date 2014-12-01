@@ -24,30 +24,40 @@ class Proveedores(models.Model):
         return ('proveedor_detail', [int(self.pk)])
 
 
-class categoriaProducto(models.Model):
+class CategoriaProducto(models.Model):
     nombre 	= models.CharField(max_length=200)
     descripcion = models.TextField(max_length=400)
 
     def __unicode__(self):
         return self.nombre
 
+
+TAX_VALUE = 0.18
+BAS_IMP = 1.18
 class ProductProvee(models.Model):
     def url(self,filename):
         ruta = "MultimediaData/Producto/%s/%s"%(self.nombre,str(filename))
         return ruta
+    code = models.CharField(max_length=20, unique=True)
+    number = models.PositiveIntegerField()
+    categoria	= models.ManyToManyField(CategoriaProducto,null=True,blank=True)
     nombre = models.CharField(max_length=100, verbose_name="Nombre de Producto")
-    proveedor_produc = models.ForeignKey(Proveedores)
     descripcion = models.TextField()
-    stock = models.IntegerField()
+    proveedor_produc = models.ForeignKey(Proveedores)
     status = models.BooleanField(default=True)
     imagen 		= models.ImageField(upload_to=url,null=True,blank=True)
-    categorias	= models.ManyToManyField(categoriaProducto,null=True,blank=True)
     precio = models.DecimalField(max_digits=8, decimal_places=2)
+    afecto = models.BooleanField(default=False)
     igv         = models.FloatField()
+    stock = models.IntegerField()
     date_registro = models.DateTimeField(auto_now=True)
 
     def __unicode__(self):
         return "%s de %s del proveedor %s" %(self.nombre, self.precio, self.proveedor_produc.proveedor)
+
+    def save(self, *args, **kwargs):
+        self.igv = round((float(self.precio) / BAS_IMP) * TAX_VALUE, 2)
+        super(ProductProvee, self).save(*args, **kwargs)
 
     @models.permalink
     def get_absolute_url(self):

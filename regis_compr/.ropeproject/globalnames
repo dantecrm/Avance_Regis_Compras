@@ -1,8 +1,8 @@
-€}q(Ucompras.models]q(UProveedoresqUComprasHechasqUFacturaqUProductProveeqUcategoriaProductoqUCompradoresqeU%regis_compr.configuracion.development]q	(UEMAIL_HOST_PASSWORDq
-UDEBUG_TOOLBAR_PATCH_SETTINGSqUSESSION_SERIALIZERqUEMAIL_USE_TLSqUEMAIL_BACKENDqUTEMPLATE_DEBUGqU
-EMAIL_PORTqU	DATABASESqUDEBUGqUINTERNAL_IPSqU
-EMAIL_HOSTqUEMAIL_HOST_USERqUCACHESqeUwebServices.wsProductos.urls]qUurlpatternsqaUcompras.views]q(Uborrar_carritoqUreal_compraqUProveedoresListqUProveedoresDeleteqU
-index_viewqUedit_product_viewqUget_carrito_comprasq Uto_pdfq!Uproductos_viewq"U
-search_rucq#UProveedoresUpdateq$U
-login_viewq%Uregister_viewq&UProveedoresDetailq'UProductProveeCreateq(U
-about_viewq)UComprasHechasCreateq*UProveedoresCreateq+Uadd_product_viewq,UsingleProduct_viewq-Ucompra_viewq.UCompradoresCreateq/Usearchq0UCompradoresDetailq1Ulogout_viewq2UComprasHechasDetailq3UProductProveeDetailq4UProductProveeListq5eUregis_compr.urls]q6haUcompras.forms]q7(UComprasHechasFormq8UCompradoresFormq9UProductProveeFormq:UProveedoresFormq;eUwebServices.wsProductos.models]u.
+€}q(Ucompras.models]q(UBAS_IMPqU	TAX_VALUEqUProveedoresqUComprasHechasqUFacturaqUProductProveeqUCategoriaProductoq	UCompradoresq
+eU%regis_compr.configuracion.development]q(UEMAIL_HOST_PASSWORDqUDEBUG_TOOLBAR_PATCH_SETTINGSqUSESSION_SERIALIZERqUEMAIL_USE_TLSqUEMAIL_BACKENDqUTEMPLATE_DEBUGqU
+EMAIL_PORTqU	DATABASESqUDEBUGqUINTERNAL_IPSqU
+EMAIL_HOSTqUEMAIL_HOST_USERqUCACHESqeUcompras.admin]q(UComprasHechasAdminqUProductProveeAdminqeUwebServices.wsProductos.urls]qUurlpatternsqaUcompras.views]q(Uborrar_carritoqUreal_compraq UProveedoresListq!UProveedoresDeleteq"U
+index_viewq#Uedit_product_viewq$Uget_carrito_comprasq%Uto_pdfq&Uproductos_viewq'U
+search_rucq(UProveedoresUpdateq)U
+login_viewq*Uregister_viewq+UProveedoresDetailq,UProductProveeCreateq-U
+about_viewq.UComprasHechasCreateq/UProveedoresCreateq0Uadd_product_viewq1UsingleProduct_viewq2Ucompra_viewq3UCompradoresCreateq4Usearchq5UCompradoresDetailq6Ulogout_viewq7UComprasHechasDetailq8UProductProveeDetailq9UProductProveeListq:eUregis_compr.urls]q;haUcompras.forms]q<(UComprasHechasFormq=UCompradoresFormq>UProductProveeFormq?UProveedoresFormq@eUwebServices.wsProductos.models]u.

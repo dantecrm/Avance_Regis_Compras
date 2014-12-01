@@ -15,7 +15,7 @@ class CompradoresForm(forms.ModelForm):
 class ProductProveeForm(forms.ModelForm):
     class Meta:
         model = ProductProvee
-        exclude = ['status']
+        exclude = ['status', 'igv']
 
 class ComprasHechasForm(forms.ModelForm):
     class Meta:

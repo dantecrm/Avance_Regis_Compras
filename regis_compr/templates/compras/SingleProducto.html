@@ -13,7 +13,8 @@
 <h1> {{ producto.nombre }}</h1><br>
 <img src="{{MEDIA_URL}}{{ producto.imagen }}" width="150px" heigth="150px"/>
 <p> {{ producto.descripcion }}</p>
-<p> ${{ producto.precio }}</p>
+<p>PRECIO: ${{ producto.precio }}</p>
+<p>IVA:  ${{ producto.igv }}</p>
 <p> Cantidad en Existencia: {{ producto.stock }} Unidades </p>
 <br>
 <h5> Categorias:</h5>
